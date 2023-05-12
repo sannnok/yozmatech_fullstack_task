@@ -1,6 +1,6 @@
 import React from 'react';
-import {Sidebar} from '../components/Sidebar';
-import {TopNav} from '../components/TopNav';
+import {Sidebar} from './Sidebar';
+import {TopNav} from '../layouts/TopNav';
 import {Outlet} from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -10,11 +10,11 @@ const RootContainer = styled.div`
 
 const MainContainer = styled.div`
   width: 100%;
-  background-color: rgb(228 228 228);
+  background-color: var(--main-background);
 `;
 
 const MainContent = styled.div`
-  padding: 16px;
+  padding: 48px 16px;
 
   h1 {
     position: fixed;
