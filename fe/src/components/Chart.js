@@ -3,12 +3,6 @@ import {LineChart, BarChart, Bar, Line, XAxis, YAxis,
   CartesianGrid, ResponsiveContainer} from 'recharts';
 import PropTypes from 'prop-types';
 
-const margin = {
-  top: 15,
-  right: 20,
-  left: -25,
-  bottom: 5,
-};
 
 export const Chart = ({data}) => {
   return (
@@ -60,10 +54,19 @@ export const ChartBar = ({data}) => {
   );
 };
 
+
 Chart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
 };
 
 ChartBar.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
+};
+
+
+const margin = {
+  top: 15,
+  right: 20,
+  left: -25,
+  bottom: 5,
 };

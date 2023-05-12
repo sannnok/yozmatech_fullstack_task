@@ -2,6 +2,23 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 
+
+export const Sidebar = () => {
+  return (
+    <NavWrapper>
+      <Nav className="closed">
+        <LogoPlaceholder/>
+        <hr/>
+        <NavList>
+          <StyledLink to="/dashboard">Dashboard</StyledLink>
+          <StyledLink to="/user-profile">User Profile</StyledLink>
+          <StyledLink to="/table-list">Table List</StyledLink>
+        </NavList>
+      </Nav>
+    </NavWrapper>
+  );
+};
+
 const Nav = styled.nav`
   width: 240px;
   height: 100vh;
@@ -48,19 +65,3 @@ const StyledLink = styled(NavLink)`
     border-left: 3px solid #626262;
   }
 `;
-
-export const Sidebar = () => {
-  return (
-    <NavWrapper>
-      <Nav className="closed">
-        <LogoPlaceholder/>
-        <hr/>
-        <NavList>
-          <StyledLink to="/dashboard">Dashboard</StyledLink>
-          <StyledLink to="/user-profile">User Profile</StyledLink>
-          <StyledLink to="/table-list">Table List</StyledLink>
-        </NavList>
-      </Nav>
-    </NavWrapper>
-  );
-};

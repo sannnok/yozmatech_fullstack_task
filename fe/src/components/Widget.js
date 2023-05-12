@@ -2,6 +2,52 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+
+export const Widget = ({
+  sideTitle,
+  sideValue,
+  header: isChart,
+  description,
+  footerIcon,
+  footer,
+  posterData,
+  posterColor,
+}) => {
+  return (
+    <WidgetContainer>
+      <MainContent>
+        <PosterContainer className={
+          `state-${posterColor} ${isChart ? 'chart-poster' : ''}`}>
+          {posterData}
+        </PosterContainer>
+        {
+          !isChart ?
+          <>
+            <Empty />
+            <SideContent>
+              <SideTitle>{sideTitle || '<header>'}</SideTitle>
+              <SideValue>{sideValue || 0 || '<value>'}</SideValue>
+            </SideContent>
+          </> : ''
+        }
+      </MainContent>
+      <Header>{isChart}</Header>
+      <Description>{description}</Description>
+      {
+        footer ?
+          <FooterContainer>
+            <Delimiter />
+            <Footer>
+              <span className='line-height'>{footerIcon}</span>
+              &nbsp;<span>{footer}</span>
+            </Footer>
+          </FooterContainer> : ''
+      }
+    </WidgetContainer>
+  );
+};
+
+
 const WidgetContainer = styled.div`
   height: fit-content;
   box-shadow: rgb(176, 176, 176) 0px 1px 3px 0px;
@@ -86,51 +132,6 @@ const Delimiter = styled.hr`
   margin: 0;
   border-top: 1px solid #bebebe;
 `;
-
-
-export const Widget = ({
-  sideTitle,
-  sideValue,
-  header: isChart,
-  description,
-  footerIcon,
-  footer,
-  posterData,
-  posterColor,
-}) => {
-  return (
-    <WidgetContainer>
-      <MainContent>
-        <PosterContainer className={
-          `state-${posterColor} ${isChart ? 'chart-poster' : ''}`}>
-          {posterData}
-        </PosterContainer>
-        {
-          !isChart ?
-          <>
-            <Empty />
-            <SideContent>
-              <SideTitle>{sideTitle || '<header>'}</SideTitle>
-              <SideValue>{sideValue || 0 || '<value>'}</SideValue>
-            </SideContent>
-          </> : ''
-        }
-      </MainContent>
-      <Header>{isChart}</Header>
-      <Description>{description}</Description>
-      {
-        footer ?
-          <FooterContainer>
-            <Delimiter />
-            <Footer>
-              <span className='line-height'>{footerIcon}</span>
-              &nbsp;<span>{footer}</span>
-            </Footer>
-          </FooterContainer> : ''
-      }
-    </WidgetContainer>
-  );
-};
 
 
 Widget.propTypes = {

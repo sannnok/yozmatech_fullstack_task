@@ -2,6 +2,22 @@ import React from 'react';
 import {FiSearch, FiUser} from 'react-icons/fi';
 import styled from 'styled-components';
 
+
+export const TopNav = () => {
+  return (
+    <Nav>
+      <VerticallyAligned>
+        <SearchInput placeholder="Search" />
+        <FiSearch size={20}></FiSearch>
+      </VerticallyAligned>
+      <UserButton>
+        <FiUser size={20} />
+      </UserButton>
+    </Nav>
+  );
+};
+
+
 const Nav = styled.nav`
   display: flex;
   justify-content: flex-end;
@@ -34,17 +50,3 @@ const VerticallyAligned = styled.div`
     width: 100%;
   } 
 `;
-
-export const TopNav = () => {
-  return (
-    <Nav>
-      <VerticallyAligned>
-        <SearchInput placeholder="Search" />
-        <FiSearch size={20}></FiSearch>
-      </VerticallyAligned>
-      <UserButton>
-        <FiUser size={20} />
-      </UserButton>
-    </Nav>
-  );
-};

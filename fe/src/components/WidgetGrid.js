@@ -8,6 +8,92 @@ import {AiOutlineFieldTime} from 'react-icons/ai';
 import PropTypes from 'prop-types';
 import {Chart, ChartBar} from './Chart';
 
+
+export const WidgetGrid = ({reports}) => {
+  const partnerList = findUnique(reports, 'clientid');
+  const countriesList = findUnique(reports, 'countryid');
+  const minDate = getMinDate(reports);
+  const averageReportsPerDay = getAverageReportsPerDay(reports);
+  const reportsByWeekDays = getReportsByWeekDays(reports);
+  const reportsCountByCountries = getReportsCountByCountries(reports);
+  const reportsCountByCategoryId = getReportsCountByCategoryId(reports);
+
+  return (
+    <div>
+      <Row>
+        <WidgetContainer>
+          <Widget
+            sideTitle={'Reports Amount'}
+            sideValue={reports.length}
+            posterColor='orange'
+            posterData={<MdOutlineContentCopy size={30} />}
+            footerIcon={<FiArrowUp />}/>
+        </WidgetContainer>
+        <WidgetContainer>
+          <Widget
+            sideTitle={'Partner count'}
+            posterColor='green'
+            posterData={<MdStoreMallDirectory size={30} />}
+            sideValue={partnerList.length}
+            footerIcon={<FiCalendar />}
+            footer={`Since ${Date(minDate)}`} />
+        </WidgetContainer>
+        <WidgetContainer>
+          <Widget
+            sideTitle={'Countries count'}
+            sideValue={countriesList.length}
+            posterColor='red'
+            posterData={<FiInfo size={30} />} />
+        </WidgetContainer>
+        <WidgetContainer>
+          <Widget
+            sideTitle={'Reports Rate'}
+            sideValue={averageReportsPerDay}
+            posterColor='blue'
+            footer={'Per day'}
+            posterData={<BsTwitter size={30} />}
+            footerIcon={<AiOutlineFieldTime />} />
+        </WidgetContainer>
+      </Row>
+      <Row>
+        <WidgetContainer>
+          <Widget
+            header={'Weekday breakdown'}
+            posterColor='green'
+            posterData={<Chart data={reportsByWeekDays}/>}
+            description={<>
+              <span className='green'><FiArrowUp size={13}/>25</span>
+              <span>&nbsp;average per day</span>
+            </>}
+            footer={`starting ${Date(minDate)}`}
+            footerIcon={<AiOutlineFieldTime />} />
+        </WidgetContainer>
+        <WidgetContainer>
+          <Widget
+            header={'Breakdown by countries'}
+            posterColor='orange'
+            posterData={
+              <ChartBar data={reportsCountByCountries}/>
+            }
+            description={'For the whole period'}
+            footer={`starting ${Date(minDate)}`}
+            footerIcon={<AiOutlineFieldTime />} />
+        </WidgetContainer>
+        <WidgetContainer>
+          <Widget
+            header={'Breakdown by category'}
+            posterColor='red'
+            posterData={<Chart data={reportsCountByCategoryId}/>}
+            description='Category number'
+            footer={`starting ${Date(minDate)}`}
+            footerIcon={<AiOutlineFieldTime />} />
+        </WidgetContainer>
+      </Row>
+    </div>
+  );
+};
+
+
 const WidgetContainer = styled.div`
   flex: 1 0 20%;
   margin: 10px;
@@ -112,89 +198,6 @@ const getReportsCountByCategoryId = (reports) => {
   return reportsCountArray;
 };
 
-export const WidgetGrid = ({reports}) => {
-  const partnerList = findUnique(reports, 'clientid');
-  const countriesList = findUnique(reports, 'countryid');
-  const minDate = getMinDate(reports);
-  const averageReportsPerDay = getAverageReportsPerDay(reports);
-  const reportsByWeekDays = getReportsByWeekDays(reports);
-  const reportsCountByCountries = getReportsCountByCountries(reports);
-  const reportsCountByCategoryId = getReportsCountByCategoryId(reports);
-
-  return (
-    <div>
-      <Row>
-        <WidgetContainer>
-          <Widget
-            sideTitle={'Reports Amount'}
-            sideValue={reports.length}
-            posterColor='orange'
-            posterData={<MdOutlineContentCopy size={30} />}
-            footerIcon={<FiArrowUp />}/>
-        </WidgetContainer>
-        <WidgetContainer>
-          <Widget
-            sideTitle={'Partner count'}
-            posterColor='green'
-            posterData={<MdStoreMallDirectory size={30} />}
-            sideValue={partnerList.length}
-            footerIcon={<FiCalendar />}
-            footer={`Since ${Date(minDate)}`} />
-        </WidgetContainer>
-        <WidgetContainer>
-          <Widget
-            sideTitle={'Countries count'}
-            sideValue={countriesList.length}
-            posterColor='red'
-            posterData={<FiInfo size={30} />} />
-        </WidgetContainer>
-        <WidgetContainer>
-          <Widget
-            sideTitle={'Reports Rate'}
-            sideValue={averageReportsPerDay}
-            posterColor='blue'
-            footer={'Per day'}
-            posterData={<BsTwitter size={30} />}
-            footerIcon={<AiOutlineFieldTime />} />
-        </WidgetContainer>
-      </Row>
-      <Row>
-        <WidgetContainer>
-          <Widget
-            header={'Weekday breakdown'}
-            posterColor='green'
-            posterData={<Chart data={reportsByWeekDays}/>}
-            description={<>
-              <span className='green'><FiArrowUp size={13}/>25</span>
-              <span>&nbsp;average per day</span>
-            </>}
-            footer={`starting ${Date(minDate)}`}
-            footerIcon={<AiOutlineFieldTime />} />
-        </WidgetContainer>
-        <WidgetContainer>
-          <Widget
-            header={'Breakdown by countries'}
-            posterColor='orange'
-            posterData={
-              <ChartBar data={reportsCountByCountries}/>
-            }
-            description={'For the whole period'}
-            footer={`starting ${Date(minDate)}`}
-            footerIcon={<AiOutlineFieldTime />} />
-        </WidgetContainer>
-        <WidgetContainer>
-          <Widget
-            header={'Breakdown by category'}
-            posterColor='red'
-            posterData={<Chart data={reportsCountByCategoryId}/>}
-            description='Category number'
-            footer={`starting ${Date(minDate)}`}
-            footerIcon={<AiOutlineFieldTime />} />
-        </WidgetContainer>
-      </Row>
-    </div>
-  );
-};
 
 WidgetGrid.propTypes = {
   reports: PropTypes.arrayOf(PropTypes.object),

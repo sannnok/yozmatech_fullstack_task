@@ -4,6 +4,22 @@ import {TopNav} from '../layouts/TopNav';
 import {Outlet} from 'react-router-dom';
 import styled from 'styled-components';
 
+
+export const RootLayout = () => {
+  return (
+    <RootContainer>
+      <Sidebar />
+      <MainContainer>
+        <TopNav />
+        <MainContent>
+          <Outlet />
+        </MainContent>
+      </MainContainer>
+    </RootContainer>
+  );
+};
+
+
 const RootContainer = styled.div`
   display: flex;
 `;
@@ -32,17 +48,3 @@ const MainContent = styled.div`
     }
   } 
 `;
-
-export const RootLayout = () => {
-  return (
-    <RootContainer>
-      <Sidebar />
-      <MainContainer>
-        <TopNav />
-        <MainContent>
-          <Outlet />
-        </MainContent>
-      </MainContainer>
-    </RootContainer>
-  );
-};
