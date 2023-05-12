@@ -26,12 +26,11 @@ const MainContent = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
+
     h1 {
       display: none;
     }
   } 
-
-  height: calc(100vh - 48px);
 `;
 
 export const RootLayout = () => {

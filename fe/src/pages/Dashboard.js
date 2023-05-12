@@ -20,16 +20,7 @@ export const Dashboard = () => {
   return (
     <div>
       <h1>Dashboard</h1>
-      <div>
-        {reports.map((report, index) => {
-          // return (<div key={index}>{report.category}</div>);
-        })}
-      </div>
-
       <WidgetGrid reports={reports}/>
-      {/* <Widget />
-      <Widget />
-      <Widget /> */}
     </div>
   );
 };

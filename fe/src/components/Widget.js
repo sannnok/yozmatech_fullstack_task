@@ -9,7 +9,7 @@ const WidgetContainer = styled.div`
   justify-content: space-between;
   position: relative;
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 2px;
   color: var(--widget-text-color);
 `;
 
@@ -22,6 +22,7 @@ const MainContent = styled.div`
     width: 100%;
     position: relative;
     top: -22px;
+    height: 120px;
   }
 `;
 
@@ -71,12 +72,14 @@ const Footer = styled.div`
 `;
 
 const Header = styled.div`
-  font-size: 20px;
-  color: #444;
+  margin-top: -8px;
+  padding-left: 4px;
 `;
 
 const Description = styled.div`
-  font-size: 14px;
+  font-size: 12px;
+  padding-top: 8px;
+  padding-left: 4px;
 `;
 
 const Delimiter = styled.hr`
@@ -138,5 +141,5 @@ Widget.propTypes = {
   footer: PropTypes.string,
   footerIcon: PropTypes.element,
   header: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.any,
 };
